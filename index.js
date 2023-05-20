@@ -6,36 +6,30 @@
   document.getElementById("addButton").onclick = handleButtonClick;
     // Add a random number
     function sendRandomNumber(randomNumber) {
-        // Fetch the existing data from the server
-        fetch('http://localhost:3000/data.json')
-          .then(response => response.json())
-          .then(data => {
-            // Assuming the data is an array, concatenate the new number to it
-            data.push(randomNumber);
-      
-            // Send the updated data to the server
-            fetch('http://localhost:3000/addData', {
-              method: 'POST',
-              headers: {
-                'Content-Type': 'application/json'
-              },
-              body: JSON.stringify(data)
-            })
-              .then(response => {
-                if (response.ok) {
-                  console.log('Numbers sent to data.json successfully!');
-                } else {
-                  console.log('Failed to send numbers to data.json');
-                }
-              })
-              .catch(error => {
-                console.log('An error occurred:', error);
-              });
-          })
-          .catch(error => {
-            console.log('An error occurred:', error);
-          });
-      }
+      // Create an array with just the random number
+      const newData = [randomNumber];
+    
+      // Send the new data to the server
+      fetch('http://localhost:3000/addData', {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json'
+        },
+        body: JSON.stringify(newData)
+      })
+        .then(response => {
+          if (response.ok) {
+            console.log('Number sent to data.json successfully!');
+          } else {
+            console.log('Failed to send number to data.json');
+          }
+        })
+        .catch(error => {
+          console.log('An error occurred:', error);
+        });
+    }
+    
+    
       
   
   // Fetch the data from the external source

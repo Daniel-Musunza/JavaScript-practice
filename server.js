@@ -10,6 +10,9 @@ app.use((req, res, next) => {
   next();
 });
 
+// Parse JSON bodies
+app.use(express.json());
+
 // Serve static files
 app.use(express.static(path.join(__dirname)));
 
@@ -42,8 +45,8 @@ app.post('/addData', (req, res) => {
       return;
     }
 
-    // Add the new data to the existing data array
-    jsonData.push(newData);
+    // Add the new number to the existing data array
+    jsonData.push(...newData);
 
     // Write the updated data back to data.json
     const updatedData = JSON.stringify(jsonData);
@@ -58,6 +61,7 @@ app.post('/addData', (req, res) => {
     });
   });
 });
+
 
 const port = 3000;
 const hostname = 'localhost';
