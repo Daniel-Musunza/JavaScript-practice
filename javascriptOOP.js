@@ -39,5 +39,5 @@ function Magazine(title, author, year, month){
 Magazine.prototype = Object.create(Book.prototype);
 
 //Instantiate Magazine Object
- const mag1 = new Magazine('Mag One', "Musunza", "2003", "March");
+ const mag1 = new Magazine('Mag1', "Musunza", "2003", "March");
  alert(mag1.getSummary());
