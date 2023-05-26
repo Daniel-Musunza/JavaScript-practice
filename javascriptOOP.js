@@ -27,6 +27,17 @@ Book.prototype.revise = function(newYear) {
 const book1 = new Book("BOOk1", "John Doe", "2013");
 const book2 = new Book("BOOK2", "Festo", "2020");
 
-alert(book2.getAge());
 
-//ES6
+
+//magazine constructor
+function Magazine(title, author, year, month){
+    Book.call(this, title,author,year);
+    this.month = month;
+}
+
+//inherit Prototype
+Magazine.prototype = Object.create(Book.prototype);
+
+//Instantiate Magazine Object
+ const mag1 = new Magazine('Mag One', "Musunza", "2003", "March");
+ alert(mag1.getSummary());
